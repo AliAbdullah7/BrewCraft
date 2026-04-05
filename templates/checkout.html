@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}إتمام الشراء - BrewCraft{% endblock %}
+{% block body_class %}checkout-page{% endblock %}
+{% block page_name %}checkout{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="progress-steps">
+        <div class="step active">🛒 السلة</div>
+        <div class="step">📝 المعلومات</div>
+        <div class="step">💳 الدفع</div>
+        <div class="step">✅ التأكيد</div>
+    </div>
+
+    <h1>☕ إتمام الطلب</h1>
+    
+    <label>الاسم الكامل</label>
+    <input type="text" id="fullName" placeholder="أحمد محمد العتيبي">
+    
+    <label>البريد الإلكتروني</label>
+    <input type="email" id="email" placeholder="ahmed@example.com">
+    
+    <label>رقم الجوال</label>
+    <input type="tel" id="phone" placeholder="05xxxxxxxx">
+    
+    <label>العنوان بالكامل</label>
+    <input type="text" id="address" placeholder="المدينة، الحي، الشارع، رقم المنزل">
+    
+    <label>ملاحظات إضافية (اختياري)</label>
+    <textarea id="notes" rows="3" placeholder="مثلاً: يرجى الاتصال قبل التوصيل..."></textarea>
+
+    <h2>🎁 كود خصم</h2>
+    <div class="discount-box">
+        <input type="text" id="couponCode" placeholder="أدخل الكود">
+        <button type="button" data-action="apply-coupon" style="width: auto; margin: 0; padding: 10px 20px;">تطبيق</button>
+    </div>
+    <div id="couponMsg" style="color: #b45f2b; font-size: 14px;"></div>
+
+    <h2>💳 طرق الدفع</h2>
+    <div class="payment-methods" id="paymentMethods">
+        <div class="payment-card" data-method="visa">💳 فيزا</div>
+        <div class="payment-card" data-method="mada">🇸🇦 مدى</div>
+        <div class="payment-card" data-method="paypal">📱 PayPal</div>
+        <div class="payment-card" data-method="applepay">🍏 Apple Pay</div>
+        <div class="payment-card" data-method="cod">💰 عند الاستلام</div>
+    </div>
+
+    <div class="order-summary" id="orderSummary">
+        <h3>📦 ملخص الطلب</h3>
+        <div id="summaryItems"></div>
+        <hr style="margin: 10px 0;">
+        <div>المجموع الفرعي: <span id="subtotal">0</span> ريال</div>
+        <div>الخصم: -<span id="discountAmount">0</span> ريال</div>
+        <div>الشحن: <span id="shipping">15</span> ريال</div>
+        <div style="font-size: 20px; font-weight: bold; margin-top: 10px;">الإجمالي: <span id="total">0</span> ريال</div>
+    </div>
+
+    <button type="button" data-action="complete-order">✅ تأكيد الطلب والدفع</button>
+    
+    <div id="successMsg" class="success"></div>
+    <br>
+    <a href="{{ url_for('index') }}" style="color: #b45f2b;">⬅ العودة للمتجر</a>
+</div>
+{% endblock %}

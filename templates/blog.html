@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}مدونة القهوة - BrewCraft{% endblock %}
+{% block body_class %}{% endblock %}
+{% block page_name %}blog{% endblock %}
+{% block content %}
+<button class="dark-toggle fixed-top-toggle" type="button" data-action="toggle-dark">🌙</button>
+<div class="container">
+    <h1>📝 مدونة القهوة | BrewCraft</h1>
+    <div class="blog-grid">
+        <div class="blog-card">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500" alt="قهوة">
+            <div class="blog-content">
+                <div class="blog-date">📅 1 أبريل 2026</div>
+                <h3>كيف تختار مطحنة القهوة المناسبة لمنزلك؟</h3>
+                <div class="blog-summary">دليلك الشامل لاختيار المطحنة اليدوية أو الكهربائية حسب احتياجاتك اليومية وميزانيتك...</div>
+                <div class="read-more" data-action="toggle-read-more">📖 اقرأ المزيد ↓</div>
+                <div class="blog-full">
+                    <strong>✨ التفاصيل الكاملة:</strong><br><br>
+                    عند اختيار مطحنة القهوة، هناك عوامل مهمة:<br><br>
+                    <strong>1. المطحنة اليدوية:</strong> مثالية للسفر والمنزل، تعطي تحكماً كاملاً في خشونة الطحن، وسعرها اقتصادي.<br>
+                    <strong>2. المطحنة الكهربائية:</strong> أسرع ومناسبة للكميات الكبيرة، لكنها أعلى سعراً.<br>
+                    <strong>3. مادة الطحن:</strong> الخزف يعطي نتائج متساوية، أما الفولاذ فهو أكثر متانة.<br><br>
+                    💡 <strong>نصيحتنا:</strong> إذا كنت تشرب قهوة يومياً لشخص واحد، المطحنة اليدوية خيار ممتاز واقتصادي.
+                </div>
+            </div>
+        </div>
+        <div class="blog-card">
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500" alt="ميزان">
+            <div class="blog-content">
+                <div class="blog-date">📅 25 مارس 2026</div>
+                <h3>أهمية الميزان الدقيق في تحضير القهوة</h3>
+                <div class="blog-summary">لماذا يجب أن يكون الميزان أول أداة تشتريها بعد القهوة نفسها؟ الفرق بين 0.1 جرام يصنع معجزة...</div>
+                <div class="read-more" data-action="toggle-read-more">📖 اقرأ المزيد ↓</div>
+                <div class="blog-full">
+                    <strong>⚖️ لماذا الميزان ضروري؟</strong><br><br>
+                    تحضير القهوة المختصة يعتمد على الدقة. نسبة القهوة إلى الماء المثالية هي 1:16 (مثلاً 15 جرام قهوة إلى 240 مل ماء).<br><br>
+                    بدون ميزان، قد تحصل على قهوة مرة (زيادة كمية القهوة) أو ضعيفة (قلة القهوة).<br><br>
+                    🎯 <strong>نوصي بميزان دقيق حتى 0.1 جرام</strong> لتحصل على أفضل نتيجة متسقة كل يوم.
+                </div>
+            </div>
+        </div>
+        <div class="blog-card">
+            <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=500" alt="قهوة مختصة">
+            <div class="blog-content">
+                <div class="blog-date">📅 15 مارس 2026</div>
+                <h3>5 أخطاء شائعة في تحضير القهوة المنزلية</h3>
+                <div class="blog-summary">تجنب هذه الأخطاء لتحصل على فنجان قهوة بجودة المقاهي الاحترافية في منزلك...</div>
+                <div class="read-more" data-action="toggle-read-more">📖 اقرأ المزيد ↓</div>
+                <div class="blog-full">
+                    <strong>❌ الأخطاء الشائعة:</strong><br><br>
+                    1. <strong>استخدام ماء غير مناسب:</strong> استخدم ماء مفلتر، ماء الحنفية يغير الطعم.<br>
+                    2. <strong>طحن القهوة مرة واحدة:</strong> القهوة المطحونة تفقد نكهتها خلال 15 دقيقة! اطحن قبل التخمير مباشرة.<br>
+                    3. <strong>درجة حرارة خاطئة:</strong> الماء المغلي يحرق القهوة، درجة مثالية 90-96 درجة مئوية.<br>
+                    4. <strong>تخزين القهوة في الثلاجة:</strong> القهوة تمتص الروائح، خزنها في مكان جاف ومظلم.<br>
+                    5. <strong>عدم تنظيف الأدوات:</strong> الزيوت المتراكمة تفسد نكهة القهوة الجديدة.<br><br>
+                    ✅ جرب هذه النصائح وستلاحظ الفرق فوراً!
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <button onclick="window.location.href='{{ url_for('index') }}'">🏠 العودة للمتجر</button>
+    </div>
+</div>
+<footer>
+    <p>© 2026 BrewCraft - مدونة القهوة | للعرض المحلي فقط</p>
+</footer>
+{% endblock %}

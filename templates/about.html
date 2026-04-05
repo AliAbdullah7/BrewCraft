@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}من نحن - BrewCraft{% endblock %}
+{% block body_class %}{% endblock %}
+{% block page_name %}about{% endblock %}
+{% block content %}
+<button class="dark-toggle fixed-top-toggle" type="button" data-action="toggle-dark">🌙</button>
+<div class="container">
+    <h1>☕ قصة BrewCraft</h1>
+    <div class="story">
+        <p>🇸🇦 تأسست <strong>BrewCraft</strong> في عام 2024 على يد مجموعة من عشاق القهوة المختصة، بهدف بسيط: <strong>جعل أدوات القهوة الاحترافية في متناول الجميع للاستخدام المنزلي اليومي</strong>.</p>
+        <br>
+        <p>نؤمن بأن فنجان القهوة المثالي يبدأ بالأداة المناسبة. لذلك نختار بعناية كل منتج نقدمه، من المطاحن اليدوية الدقيقة إلى الأباريق الزجاجية الأنيقة.</p>
+        <br>
+        <p>📍 مقرنا في الرياض، ونوصل لكل مدن المملكة.</p>
+    </div>
+
+    <h2 style="margin-top: 40px;">🌟 قيمنا</h2>
+    <div class="values">
+        <div class="value-card">🔧 الجودة أولاً</div>
+        <div class="value-card">❤️ شغف القهوة</div>
+        <div class="value-card">🤝 خدمة عملاء مميزة</div>
+        <div class="value-card">🌱 استدامة</div>
+    </div>
+
+    <h2 style="margin-top: 40px;">👥 فريقنا</h2>
+    <div class="team">
+        <div class="member">
+            <div class="member-icon">👨‍💼</div>
+            <h3>عماد الهاشل</h3>
+            <p>مؤسس ومدير عام</p>
+        </div>
+        <div class="member">
+            <div class="member-icon">👨‍🔧</div>
+            <h3>أحمد الحربي</h3>
+            <p>خبير قهوة ومتخصص تحميص</p>
+        </div>
+        <div class="member">
+            <div class="member-icon">👨‍💻</div>
+            <h3>علي الكريشان</h3>
+            <p>تطوير وتقنية المعلومات</p>
+        </div>
+    </div>
+
+    <div class="center-text">
+        <a class="btn btn-home" href="{{ url_for('index') }}">🏠 العودة للمتجر</a>
+    </div>
+</div>
+{% endblock %}

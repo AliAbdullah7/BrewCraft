@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}اتصل بنا - BrewCraft{% endblock %}
+{% block body_class %}{% endblock %}
+{% block page_name %}contact{% endblock %}
+{% block content %}
+<button class="dark-toggle fixed-top-toggle" type="button" data-action="toggle-dark">🌙</button>
+<div class="container">
+    <h1>📞 تواصل معنا</h1>
+    <div class="contact-info">
+        <p>📱 <strong>رقم الجوال:</strong> 0555555555</p>
+        <p>📧 <strong>البريد الإلكتروني:</strong> support@brewcraft.shop</p>
+        <p>🏢 <strong>العنوان:</strong> الرياض، المملكة العربية السعودية</p>
+        <p>🕒 <strong>ساعات العمل:</strong> السبت - الخميس 9ص - 9م</p>
+    </div>
+    <a class="btn btn-home" href="{{ url_for('index') }}">🏠 العودة للمتجر</a>
+</div>
+{% endblock %}
