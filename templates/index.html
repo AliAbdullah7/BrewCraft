@@ -1,56 +1,107 @@
 {% extends 'base.html' %}
 {% block title %}BrewCraft | متجر أكسسوارات القهوة الشخصية{% endblock %}
-{% block body_class %}{% endblock %}
+{% block body_class %}home-page{% endblock %}
 {% block page_name %}index{% endblock %}
 {% block content %}
-<header>
-    <div class="logo">Brew<span>Craft</span> ☕</div>
-    <nav>
-        <a href="{{ url_for('index') }}">الرئيسية</a>
+<header class="home-header">
+    <a class="logo home-logo" href="{{ url_for('index') }}">Brew<span>Craft</span> <span class="logo-mark">☕</span></a>
+
+    <nav class="home-nav" aria-label="التنقل الرئيسي">
+        <a class="active" href="{{ url_for('index') }}">الرئيسية</a>
         <a href="{{ url_for('blog') }}">مدونة القهوة</a>
         <a href="{{ url_for('about') }}">من نحن</a>
         <a href="{{ url_for('contact') }}">اتصل بنا</a>
     </nav>
-    <div class="header-actions">
-        <button class="account-btn" type="button" data-action="toggle-account">👤 حسابي</button>
-        <button class="dark-toggle" type="button" data-action="toggle-dark">🌙</button>
-        <div class="cart-icon" data-action="toggle-cart">
-            🛒 سلة
+
+    <div class="header-actions home-actions">
+        <button class="account-btn home-action-btn" type="button" data-action="toggle-account">حسابي <span>👤</span></button>
+        <button class="dark-toggle home-icon-btn" type="button" data-action="toggle-dark">🌙</button>
+        <button class="cart-icon home-cart-btn" type="button" data-action="toggle-cart">
+            السلة
             <span class="cart-count" id="cart-count">0</span>
-        </div>
+        </button>
     </div>
 </header>
 
-<div class="hero">
-    <h1>أكسسوارات القهوة الشخصية</h1>
-    <p>للاستخدام المنزلي اليومي.. احترف عزلتك القهوية</p>
-    <div class="countdown" id="countdown">⏳ عرض خاص ينتهي بعد: --:--:--</div>
-</div>
+<section class="hero home-hero">
+    <div class="hero-shell">
+        <div class="hero-copy">
+            <span class="hero-eyebrow">مستلزمات القهوة المنزلية باختيار احترافي</span>
+            <h1>متجر أنيق لعشاق القهوة اليومية</h1>
+            <p>أدوات تحضير، أكواب، مطاحن وإكسسوارات مختارة بعناية لتجربة منزلية أكثر احترافية وأناقة.</p>
 
-<div class="search-filter">
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="🔍 ابحث عن منتج..." >
-    </div>
-    <div class="filters">
-        <select id="categoryFilter" >
-            <option value="all">📁 جميع الفئات</option>
-            <option value="أدوات تحضير">⚙️ أدوات تحضير</option>
-            <option value="طحن">🔄 طحن</option>
-            <option value="أكواب">🥤 أكواب</option>
-            <option value="إكسسوارات">✨ إكسسوارات</option>
-            <option value="مستهلكات">📦 مستهلكات</option>
-        </select>
-        <select id="sortFilter" >
-            <option value="default">📊 ترتيب: افتراضي</option>
-            <option value="priceAsc">💰 السعر: من الأقل للأعلى</option>
-            <option value="priceDesc">💰 السعر: من الأعلى للأقل</option>
-        </select>
-        <button type="button" data-action="show-best-sellers">⭐ الأكثر مبيعاً</button>
-        <button type="button" data-action="show-all-products">📋 عرض الكل</button>
-    </div>
-</div>
+            <div class="hero-actions-row">
+                <a href="#catalog" class="btn hero-primary">ابدأ التسوق</a>
+                <a href="{{ url_for('about') }}" class="btn hero-secondary">تعرف على BrewCraft</a>
+            </div>
 
-<section class="products">
+            <div class="countdown hero-countdown" id="countdown">⏳ عرض خاص ينتهي بعد: --:--:--</div>
+        </div>
+
+        <div class="hero-panel">
+            <div class="hero-stat-card">
+                <strong>شحن سريع</strong>
+                <span>داخل السعودية خلال 3 - 5 أيام</span>
+            </div>
+            <div class="hero-stat-card">
+                <strong>منتجات مختارة</strong>
+                <span>تصميم عملي للاستخدام المنزلي اليومي</span>
+            </div>
+            <div class="hero-stat-card">
+                <strong>دفع آمن</strong>
+                <span>خيارات دفع متعددة وتجربة شراء واضحة</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="home-trust-bar" aria-label="مزايا المتجر">
+    <div class="trust-chip">🚚 شحن سريع داخل السعودية</div>
+    <div class="trust-chip">🔒 دفع آمن ومشفّر</div>
+    <div class="trust-chip">↩️ استرجاع خلال 14 يوم</div>
+</section>
+
+<section class="catalog-toolbar" id="catalog">
+    <div class="toolbar-head">
+        <div>
+            <span class="section-kicker">التسوق</span>
+            <h2>اكتشف منتجات BrewCraft</h2>
+        </div>
+    </div>
+
+    <div class="search-filter home-toolbar">
+        <div class="search-box home-search-box">
+            <label class="visually-hidden" for="searchInput">ابحث عن منتج</label>
+            <input type="text" id="searchInput" placeholder="ابحث عن منتج، كوب، مطحنة أو أداة تحضير">
+        </div>
+
+        <div class="filters home-filters">
+            <select id="categoryFilter">
+                <option value="all">جميع الفئات</option>
+                <option value="أدوات تحضير">أدوات تحضير</option>
+                <option value="طحن">طحن</option>
+                <option value="أكواب">أكواب</option>
+                <option value="إكسسوارات">إكسسوارات</option>
+                <option value="مستهلكات">مستهلكات</option>
+            </select>
+            <select id="sortFilter">
+                <option value="default">ترتيب افتراضي</option>
+                <option value="priceAsc">السعر: من الأقل للأعلى</option>
+                <option value="priceDesc">السعر: من الأعلى للأقل</option>
+            </select>
+            <button type="button" data-action="show-best-sellers">الأكثر مبيعاً</button>
+            <button type="button" data-action="show-all-products">عرض الكل</button>
+        </div>
+    </div>
+</section>
+
+<section class="products home-products">
+    <div class="products-header">
+        <div>
+            <span class="section-kicker">المنتجات</span>
+            <h2>تشكيلة جاهزة للتحضير المنزلي</h2>
+        </div>
+    </div>
     <div class="product-grid" id="product-grid"></div>
 </section>
 
@@ -65,27 +116,46 @@
     <h3>🛒 سلة المشتريات</h3>
     <div id="cart-items"></div>
     <div style="font-weight: bold; margin: 16px 0;">الإجمالي: <span id="cart-total">0</span> ريال</div>
-    <button type="button" data-action="go-checkout">💳 متابعة الشراء</button>
-    <button data-action="toggle-cart" style="background:#888; margin-top:10px;">إغلاق</button>
+    <button type="button" data-action="go-checkout">متابعة الشراء</button>
+    <button type="button" data-action="toggle-cart" style="background:#888; margin-top:10px;">إغلاق</button>
 </div>
 
 <div id="account-sidebar" class="account-sidebar">
     <h3>👤 حسابي</h3>
     <div id="accountInfo"></div>
-    <button type="button" data-action="edit-account">✏️ تعديل الملف الشخصي</button>
+    <button type="button" data-action="edit-account">تعديل الملف الشخصي</button>
     <button type="button" data-action="toggle-account" style="background:#888; margin-top:10px;">إغلاق</button>
 </div>
 
 <div id="toast" class="toast">✅ تمت الإضافة إلى السلة</div>
 
-<footer>
-    <div class="footer-grid">
-        <div class="footer-col"><h4>من نحن</h4><a href="{{ url_for('about') }}">قصة BrewCraft</a></div>
-        <div class="footer-col"><h4>الدعم الفني</h4><a href="{{ url_for('contact') }}">اتصل بنا</a></div>
-        <div class="footer-col"><h4>الشحن</h4><a href="#">خيارات التوصيل</a></div>
-        <div class="footer-col"><h4>الضمانات</h4><a href="#">استرجاع 14 يوم</a></div>
-        <div class="footer-col"><h4>السياسة</h4><a href="{{ url_for('policy') }}">سياسة الشركة</a></div>
+<footer class="home-footer">
+    <div class="footer-grid home-footer-grid">
+        <div class="footer-brand-block">
+            <div class="logo footer-logo">Brew<span>Craft</span> ☕</div>
+            <p>متجر عربي لأدوات القهوة المنزلية، بتجربة تسوق واضحة وتصميم يركز على المنتج أولاً.</p>
+        </div>
+        <div class="footer-col">
+            <h4>التصفح</h4>
+            <a href="{{ url_for('index') }}">الرئيسية</a>
+            <a href="{{ url_for('blog') }}">مدونة القهوة</a>
+            <a href="{{ url_for('about') }}">من نحن</a>
+            <a href="{{ url_for('contact') }}">اتصل بنا</a>
+        </div>
+        <div class="footer-col">
+            <h4>خدمة العملاء</h4>
+            <a href="{{ url_for('policy') }}">سياسة الشركة</a>
+            <a href="#">خيارات الشحن</a>
+            <a href="#">الاسترجاع والاستبدال</a>
+            <a href="#">الأسئلة الشائعة</a>
+        </div>
+        <div class="footer-col">
+            <h4>تواصل معنا</h4>
+            <a href="mailto:support@brewcraft.shop">support@brewcraft.shop</a>
+            <a href="tel:+966597203054">0597203054</a>
+            <span>الرياض، المملكة العربية السعودية</span>
+        </div>
     </div>
-    <div class="copyright">© 2026 BrewCraft - للعرض المحلي فقط | البريد: support@brewcraft.shop</div>
+    <div class="copyright">© 2026 BrewCraft - جميع الحقوق محفوظة</div>
 </footer>
 {% endblock %}
