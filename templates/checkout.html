@@ -3,61 +3,185 @@
 {% block body_class %}checkout-page{% endblock %}
 {% block page_name %}checkout{% endblock %}
 {% block content %}
-<div class="container">
-    <div class="progress-steps">
+<div class="checkout-shell">
+    <div class="checkout-progress progress-steps">
         <div class="step active">🛒 السلة</div>
-        <div class="step">📝 المعلومات</div>
-        <div class="step">💳 الدفع</div>
+        <div class="step active">📝 المعلومات</div>
+        <div class="step active">💳 الدفع</div>
         <div class="step">✅ التأكيد</div>
     </div>
 
-    <h1>☕ إتمام الطلب</h1>
-    
-    <label>الاسم الكامل</label>
-    <input type="text" id="fullName" placeholder="أحمد محمد العتيبي">
-    
-    <label>البريد الإلكتروني</label>
-    <input type="email" id="email" placeholder="ahmed@example.com">
-    
-    <label>رقم الجوال</label>
-    <input type="tel" id="phone" placeholder="05xxxxxxxx">
-    
-    <label>العنوان بالكامل</label>
-    <input type="text" id="address" placeholder="المدينة، الحي، الشارع، رقم المنزل">
-    
-    <label>ملاحظات إضافية (اختياري)</label>
-    <textarea id="notes" rows="3" placeholder="مثلاً: يرجى الاتصال قبل التوصيل..."></textarea>
-
-    <h2>🎁 كود خصم</h2>
-    <div class="discount-box">
-        <input type="text" id="couponCode" placeholder="أدخل الكود">
-        <button type="button" data-action="apply-coupon" style="width: auto; margin: 0; padding: 10px 20px;">تطبيق</button>
-    </div>
-    <div id="couponMsg" style="color: #b45f2b; font-size: 14px;"></div>
-
-    <h2>💳 طرق الدفع</h2>
-    <div class="payment-methods" id="paymentMethods">
-        <div class="payment-card" data-method="visa">💳 فيزا</div>
-        <div class="payment-card" data-method="mada">🇸🇦 مدى</div>
-        <div class="payment-card" data-method="paypal">📱 PayPal</div>
-        <div class="payment-card" data-method="applepay">🍏 Apple Pay</div>
-        <div class="payment-card" data-method="cod">💰 عند الاستلام</div>
+    <div class="checkout-header-block">
+        <div>
+            <p class="checkout-kicker">إتمام آمن للطلب</p>
+            <h1>☕ إتمام الطلب</h1>
+            <p class="checkout-subtitle">أكمل البيانات، اختر وسيلة الدفع المناسبة، وراجع الطلب قبل التأكيد.</p>
+        </div>
+        <div class="checkout-trust-badges">
+            <div class="trust-badge">🔒 دفع آمن ومشفّر</div>
+            <div class="trust-badge">🚚 شحن سريع داخل السعودية</div>
+            <div class="trust-badge">↩️ استرجاع خلال 14 يوم</div>
+        </div>
     </div>
 
-    <div class="order-summary" id="orderSummary">
-        <h3>📦 ملخص الطلب</h3>
-        <div id="summaryItems"></div>
-        <hr style="margin: 10px 0;">
-        <div>المجموع الفرعي: <span id="subtotal">0</span> ريال</div>
-        <div>الخصم: -<span id="discountAmount">0</span> ريال</div>
-        <div>الشحن: <span id="shipping">15</span> ريال</div>
-        <div style="font-size: 20px; font-weight: bold; margin-top: 10px;">الإجمالي: <span id="total">0</span> ريال</div>
-    </div>
+    <div class="checkout-layout">
+        <div class="checkout-main">
+            <section class="checkout-card">
+                <div class="section-heading">
+                    <h2>معلومات العميل</h2>
+                    <p>يرجى إدخال البيانات كما ستظهر في الطلب والفاتورة.</p>
+                </div>
+                <div class="checkout-form-grid two-columns">
+                    <div class="field-group">
+                        <label for="fullName">الاسم الكامل</label>
+                        <input type="text" id="fullName" placeholder="أحمد محمد العتيبي">
+                    </div>
+                    <div class="field-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" placeholder="ahmed@example.com">
+                    </div>
+                    <div class="field-group">
+                        <label for="phone">رقم الجوال</label>
+                        <input type="tel" id="phone" placeholder="05xxxxxxxx">
+                    </div>
+                    <div class="field-group field-span-2">
+                        <label for="address">العنوان بالكامل</label>
+                        <input type="text" id="address" placeholder="المدينة، الحي، الشارع، رقم المنزل">
+                    </div>
+                    <div class="field-group field-span-2">
+                        <label for="notes">ملاحظات إضافية <span>(اختياري)</span></label>
+                        <textarea id="notes" rows="3" placeholder="مثلاً: يرجى الاتصال قبل التوصيل..."></textarea>
+                    </div>
+                </div>
+            </section>
 
-    <button type="button" data-action="complete-order">✅ تأكيد الطلب والدفع</button>
-    
-    <div id="successMsg" class="success"></div>
-    <br>
-    <a href="{{ url_for('index') }}" style="color: #b45f2b;">⬅ العودة للمتجر</a>
+            <section class="checkout-card">
+                <div class="section-heading section-heading-inline">
+                    <div>
+                        <h2>🎁 كود خصم</h2>
+                        <p>جرّب: BREW10 أو WELCOME15 أو COFFEE20</p>
+                    </div>
+                </div>
+                <div class="discount-box checkout-discount-box">
+                    <input type="text" id="couponCode" placeholder="أدخل الكود">
+                    <button type="button" data-action="apply-coupon">تطبيق</button>
+                </div>
+                <div id="couponMsg" class="coupon-message"></div>
+            </section>
+
+            <section class="checkout-card">
+                <div class="section-heading payment-heading-row">
+                    <div>
+                        <h2>💳 طرق الدفع</h2>
+                        <p>اختر الطريقة المناسبة لك، وستظهر الحقول المطلوبة تلقائياً.</p>
+                    </div>
+                    <div class="payment-current-method" id="paymentCurrentMethod">مدى</div>
+                </div>
+
+                <div class="payment-methods payment-methods-real" id="paymentMethods">
+                    <button type="button" class="payment-card payment-card-real" data-method="mada" aria-pressed="true">
+                        <span class="payment-radio"></span>
+                        <span class="payment-brand logo-mada">
+                            <span class="brand-lines">
+                                <span class="line blue"></span>
+                                <span class="line green"></span>
+                            </span>
+                            <span class="brand-copy"><strong>مدى</strong><small>mada</small></span>
+                        </span>
+                        <span class="payment-meta">
+                            <strong>مدى</strong>
+                            <small>بطاقات محلية سعودية</small>
+                        </span>
+                    </button>
+
+                    <button type="button" class="payment-card payment-card-real" data-method="visa">
+                        <span class="payment-radio"></span>
+                        <span class="payment-brand logo-visa-master">
+                            <span class="brand-copy visa-text">VISA</span>
+                            <span class="mc-dots"><span></span><span></span></span>
+                        </span>
+                        <span class="payment-meta">
+                            <strong>فيزا / ماستركارد</strong>
+                            <small>دفع آمن بالبطاقة</small>
+                        </span>
+                    </button>
+
+                    <button type="button" class="payment-card payment-card-real" data-method="stcpay">
+                        <span class="payment-radio"></span>
+                        <span class="payment-brand logo-stcpay">
+                            <strong>stc</strong><span>pay</span>
+                        </span>
+                        <span class="payment-meta">
+                            <strong>stc pay</strong>
+                            <small>محفظة رقمية سريعة</small>
+                        </span>
+                    </button>
+
+                    <button type="button" class="payment-card payment-card-real" data-method="applepay">
+                        <span class="payment-radio"></span>
+                        <span class="payment-brand logo-applepay">
+                            <span class="apple-symbol"></span>
+                            <span>Pay</span>
+                        </span>
+                        <span class="payment-meta">
+                            <strong>Apple Pay</strong>
+                            <small>الأسرع على أجهزة Apple</small>
+                        </span>
+                    </button>
+
+                    <button type="button" class="payment-card payment-card-real" data-method="paypal">
+                        <span class="payment-radio"></span>
+                        <span class="payment-brand logo-paypal">
+                            <strong>Pay</strong><span>Pal</span>
+                        </span>
+                        <span class="payment-meta">
+                            <strong>PayPal</strong>
+                            <small>الدفع عبر الحساب</small>
+                        </span>
+                    </button>
+
+                    <button type="button" class="payment-card payment-card-real" data-method="cod">
+                        <span class="payment-radio"></span>
+                        <span class="payment-brand logo-cod">💵</span>
+                        <span class="payment-meta">
+                            <strong>الدفع عند الاستلام</strong>
+                            <small>متاح داخل مناطق محددة</small>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="payment-panel" id="paymentPanel"></div>
+            </section>
+
+            <div class="success" id="successMsg"></div>
+
+            <div class="checkout-actions-bottom">
+                <button type="button" class="checkout-submit-btn" data-action="complete-order" id="checkoutSubmitBtn">ادفع الآن</button>
+                <p class="checkout-agreement">بالضغط على الزر، أنت توافق على <a href="{{ url_for('policy') }}">الشروط والسياسات</a>.</p>
+                <a href="{{ url_for('index') }}" class="checkout-back-link">⬅ العودة للمتجر</a>
+            </div>
+        </div>
+
+        <aside class="checkout-sidebar">
+            <section class="checkout-card summary-card-sticky" id="orderSummary">
+                <div class="section-heading">
+                    <h2>📦 ملخص الطلب</h2>
+                    <p>راجع المنتجات والمبالغ قبل إتمام الدفع.</p>
+                </div>
+                <div id="summaryItems" class="summary-items"></div>
+                <div class="summary-totals">
+                    <div><span>المجموع الفرعي</span><strong><span id="subtotal">0</span> ريال</strong></div>
+                    <div><span>الخصم</span><strong>-<span id="discountAmount">0</span> ريال</strong></div>
+                    <div><span>الشحن</span><strong><span id="shipping">15</span> ريال</strong></div>
+                    <div><span>الضريبة VAT (15%)</span><strong><span id="vatAmount">0</span> ريال</strong></div>
+                    <div class="summary-total-row"><span>الإجمالي النهائي</span><strong><span id="total">0</span> ريال</strong></div>
+                </div>
+                <div class="summary-notes">
+                    <div>🚚 الشحن المتوقع: 3 - 5 أيام عمل</div>
+                    <div>🔒 جميع المعاملات محمية ومشفرة</div>
+                </div>
+            </section>
+        </aside>
+    </div>
 </div>
 {% endblock %}

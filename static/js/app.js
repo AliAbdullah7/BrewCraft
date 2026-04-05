@@ -61,31 +61,34 @@
     function initIndexPage() {
         if (page !== 'index') return;
 
-        function getImageUrl(url) {
-            return url || '/static/images/product-placeholder.jpg';
+        function getImageUrl(url, fallbackLabel = 'BrewCraft Product') {
+            if (!url) {
+                return `https://placehold.co/600x450/f4ead7/8b5e3c?text=${encodeURIComponent(fallbackLabel)}`;
+            }
+            return url;
         }
 
         const products = [
-            { id: 1, name: "ميزان قهوة رقمي دقيق 0.1 جرام مع مؤقت", price: 28, oldPrice: 89, image: "/static/images/product-1-scale.jpg", category: "أدوات تحضير", rating: 4.5, material: "بلاستيك ABS + زجاج مقوى", dimensions: "15x12x3 سم", size: "صغير (حجم جيب)", bestSeller: true },
-            { id: 2, name: "إبريق ترشيح قهوة زجاجي كيميائي V60", price: 63, oldPrice: 99, image: "/static/images/product-2-v60.jpg", category: "أدوات تحضير", rating: 4.8, material: "زجاج بورسليكات مقاوم للحرارة", dimensions: "قطر 10 سم × ارتفاع 15 سم", size: "سعة 600 مل", bestSeller: true },
-            { id: 3, name: "مطحنة قهوة كهربائية 160 واط", price: 42, oldPrice: 120, image: "/static/images/product-3-grinder.jpg", category: "طحن", rating: 4.9, material: "ستانلس ستيل", dimensions: "10x10x18 سم", size: "سعة 50 جرام", bestSeller: false },
-            { id: 4, name: "ملعقة قهوة خشبية يدوية الصنع", price: 19, oldPrice: 35, image: "/static/images/product-4-spoon.jpg", category: "إكسسوارات", rating: 4.3, material: "خشب الجوز الطبيعي", dimensions: "20x3x1 سم", size: "طول 20 سم", bestSeller: true },
-            { id: 5, name: "فلتر ورق للقهوة عضوي - 100 قطعة", price: 35, oldPrice: 45, image: "/static/images/product-5-filters.jpg", category: "مستهلكات", rating: 4.6, material: "ورق عضوي غير مبيض", dimensions: "12x12x5 سم", size: "مقاس 02", bestSeller: false },
-            { id: 6, name: "ترموس قهوة ستيل مقاوم للصدا 500مل", price: 95, oldPrice: 129, image: "/static/images/product-6-thermos.jpg", category: "أكواب", rating: 4.7, material: "ستانلس ستيل 304", dimensions: "قطر 7 سم × ارتفاع 22 سم", size: "500 مل", bestSeller: false },
-            { id: 7, name: "كوب قهوة سيراميك فاخر", price: 45, oldPrice: 65, image: "/static/images/product-7-mug.jpg", category: "أكواب", rating: 4.4, material: "سيراميك مطفي", dimensions: "قطر 9 سم × ارتفاع 10 سم", size: "300 مل", bestSeller: false },
-            { id: 8, name: "ميزان قهوة Ultrean مع شاحن USB", price: 89, oldPrice: 150, image: "/static/images/product-8-usb-scale.jpg", category: "أدوات تحضير", rating: 4.8, material: "زجاج مقوى + سيليكون", dimensions: "15x13x2.3 سم", size: "3kg / 0.1g", bestSeller: true },
-            { id: 9, name: "جهاز إسبريسو محمول HIBREW H4C", price: 626, oldPrice: 795, image: "/static/images/product-9-espresso.jpg", category: "أدوات تحضير", rating: 4.9, material: "بلاستيك + ستيل", dimensions: "7.6x7.6x22.9 سم", size: "بطارية 7500mAh", bestSeller: false },
-            { id: 10, name: "كبسولات قهوة متنوعة - 10 حبات", price: 40, oldPrice: 55, image: "/static/images/product-10-capsules.jpg", category: "مستهلكات", rating: 4.5, material: "بلاستيك معاد تدويره + قهوة", dimensions: "5x5x10 سم", size: "10 كبسولات", bestSeller: false },
-            { id: 11, name: "ساعة تيمر مغناطيسية للقهوة", price: 26, oldPrice: 55, image: "/static/images/product-11-timer.jpg", category: "أدوات تحضير", rating: 4.3, material: "بلاستيك ABS + مغناطيس", dimensions: "7x7x2 سم", size: "صغير", bestSeller: false },
-            { id: 12, name: "حبوب بن خولان - 250 جرام", price: 48, oldPrice: 65, image: "/static/images/product-12-beans.jpg", category: "مستهلكات", rating: 4.8, material: "قهوة عضوية 100%", dimensions: "عبوة 250 جرام", size: "تحميص متوسط", bestSeller: true },
-            { id: 13, name: "مخفقة رغوة حليب يدوية", price: 30, oldPrice: 50, image: "/static/images/product-13-frother.jpg", category: "إكسسوارات", rating: 4.2, material: "ستانلس ستيل + بلاستيك", dimensions: "5x5x20 سم", size: "يدوي", bestSeller: false },
-            { id: 14, name: "قمع ترشيح قهوة سيراميك", price: 63, oldPrice: 85, image: "/static/images/product-14-dripper.jpg", category: "أدوات تحضير", rating: 4.6, material: "سيراميك", dimensions: "قطر 11 سم", size: "مقاس 02", bestSeller: false },
-            { id: 15, name: "كوب قياس زجاجي 600مل", price: 28, oldPrice: 40, image: "/static/images/product-15-measuring-cup.jpg", category: "أكواب", rating: 4.4, material: "زجاج بورسليكات", dimensions: "قطر 8 سم × ارتفاع 14 سم", size: "600 مل", bestSeller: false }
+            { id: 1, name: "ميزان قهوة رقمي دقيق 0.1 جرام مع مؤقت", price: 28, oldPrice: 89, image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80", category: "أدوات تحضير", rating: 4.5, material: "بلاستيك ABS + زجاج مقوى", dimensions: "15x12x3 سم", size: "صغير (حجم جيب)", bestSeller: true },
+            { id: 2, name: "إبريق ترشيح قهوة زجاجي كيميائي V60", price: 63, oldPrice: 99, image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80", category: "أدوات تحضير", rating: 4.8, material: "زجاج بورسليكات مقاوم للحرارة", dimensions: "قطر 10 سم × ارتفاع 15 سم", size: "سعة 600 مل", bestSeller: true },
+            { id: 3, name: "مطحنة قهوة كهربائية 160 واط", price: 42, oldPrice: 120, image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=900&q=80", category: "طحن", rating: 4.9, material: "ستانلس ستيل", dimensions: "10x10x18 سم", size: "سعة 50 جرام", bestSeller: false },
+            { id: 4, name: "ملعقة قهوة خشبية يدوية الصنع", price: 19, oldPrice: 35, image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80", category: "إكسسوارات", rating: 4.3, material: "خشب الجوز الطبيعي", dimensions: "20x3x1 سم", size: "طول 20 سم", bestSeller: true },
+            { id: 5, name: "فلتر ورق للقهوة عضوي - 100 قطعة", price: 35, oldPrice: 45, image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80", category: "مستهلكات", rating: 4.6, material: "ورق عضوي غير مبيض", dimensions: "12x12x5 سم", size: "مقاس 02", bestSeller: false },
+            { id: 6, name: "ترموس قهوة ستيل مقاوم للصدا 500مل", price: 95, oldPrice: 129, image: "https://images.unsplash.com/photo-1521302080334-4bebac2763a6?auto=format&fit=crop&w=900&q=80", category: "أكواب", rating: 4.7, material: "ستانلس ستيل 304", dimensions: "قطر 7 سم × ارتفاع 22 سم", size: "500 مل", bestSeller: false },
+            { id: 7, name: "كوب قهوة سيراميك فاخر", price: 45, oldPrice: 65, image: "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=900&q=80", category: "أكواب", rating: 4.4, material: "سيراميك مطفي", dimensions: "قطر 9 سم × ارتفاع 10 سم", size: "300 مل", bestSeller: false },
+            { id: 8, name: "ميزان قهوة Ultrean مع شاحن USB", price: 89, oldPrice: 150, image: "https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=900&q=80", category: "أدوات تحضير", rating: 4.8, material: "زجاج مقوى + سيليكون", dimensions: "15x13x2.3 سم", size: "3kg / 0.1g", bestSeller: true },
+            { id: 9, name: "جهاز إسبريسو محمول HIBREW H4C", price: 626, oldPrice: 795, image: "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=900&q=80", category: "أدوات تحضير", rating: 4.9, material: "بلاستيك + ستيل", dimensions: "7.6x7.6x22.9 سم", size: "بطارية 7500mAh", bestSeller: false },
+            { id: 10, name: "كبسولات قهوة متنوعة - 10 حبات", price: 40, oldPrice: 55, image: "https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=900&q=80", category: "مستهلكات", rating: 4.5, material: "بلاستيك معاد تدويره + قهوة", dimensions: "5x5x10 سم", size: "10 كبسولات", bestSeller: false },
+            { id: 11, name: "ساعة تيمر مغناطيسية للقهوة", price: 26, oldPrice: 55, image: "https://images.unsplash.com/photo-1459755486867-b55449bb39ff?auto=format&fit=crop&w=900&q=80", category: "أدوات تحضير", rating: 4.3, material: "بلاستيك ABS + مغناطيس", dimensions: "7x7x2 سم", size: "صغير", bestSeller: false },
+            { id: 12, name: "حبوب بن خولان - 250 جرام", price: 48, oldPrice: 65, image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=900&q=80", category: "مستهلكات", rating: 4.8, material: "قهوة عضوية 100%", dimensions: "عبوة 250 جرام", size: "تحميص متوسط", bestSeller: true },
+            { id: 13, name: "مخفقة رغوة حليب يدوية", price: 30, oldPrice: 50, image: "https://images.unsplash.com/photo-1572286258217-21541b35d705?auto=format&fit=crop&w=900&q=80", category: "إكسسوارات", rating: 4.2, material: "ستانلس ستيل + بلاستيك", dimensions: "5x5x20 سم", size: "يدوي", bestSeller: false },
+            { id: 14, name: "قمع ترشيح قهوة سيراميك", price: 63, oldPrice: 85, image: "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=900&q=80", category: "أدوات تحضير", rating: 4.6, material: "سيراميك", dimensions: "قطر 11 سم", size: "مقاس 02", bestSeller: false },
+            { id: 15, name: "كوب قياس زجاجي 600مل", price: 28, oldPrice: 40, image: "https://images.unsplash.com/photo-1504630083234-14187a9df0f5?auto=format&fit=crop&w=900&q=80", category: "أكواب", rating: 4.4, material: "زجاج بورسليكات", dimensions: "قطر 8 سم × ارتفاع 14 سم", size: "600 مل", bestSeller: false }
         ];
 
-const processedProducts = products.map((product) => ({
+        const processedProducts = products.map((product) => ({
             ...product,
-            image: getImageUrl(product.image)
+            image: getImageUrl(product.image, product.name)
         }));
 
         let cart = JSON.parse(localStorage.getItem('brewCart')) || [];
@@ -257,7 +260,7 @@ const processedProducts = products.map((product) => ({
             const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
             modalContent.innerHTML = `
                 <h2>${product.name}</h2>
-                <img src="${product.image}" style="width:100%; border-radius:20px; margin:15px 0;" onerror="this.src='/static/images/product-1-scale.jpg'">
+                <img src="${product.image}" style="width:100%; border-radius:20px; margin:15px 0;" onerror="this.src='https://placehold.co/400x300/fef9e6/b45f2b?text=BrewCraft+Product'">
                 <p><strong>⭐ التقييم:</strong> ${product.rating} / 5</p>
                 <p><strong>💰 السعر:</strong> ${product.price} ريال <span style="text-decoration:line-through; color:gray;">${product.oldPrice} ريال</span> <span style="background:#b45f2b; color:white; padding:2px 8px; border-radius:12px;">-${discount}%</span></p>
                 <p><strong>🧱 المادة المصنعة:</strong> ${product.material}</p>
@@ -286,7 +289,7 @@ const processedProducts = products.map((product) => ({
                 card.className = 'product-card';
                 card.innerHTML = `
                     ${product.bestSeller ? '<div class="best-seller-badge">⭐ الأكثر مبيعاً</div>' : ''}
-                    <img src="${product.image}" alt="${product.name}" onerror="this.src='/static/images/product-1-scale.jpg'">
+                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://placehold.co/400x300/fef9e6/b45f2b?text=BrewCraft+${encodeURIComponent(product.name)}'">
                     <h3>${product.name}</h3>
                     <div class="rating">${stars} ${product.rating}</div>
                     <div class="price">
@@ -373,80 +376,234 @@ const processedProducts = products.map((product) => ({
 
         let cart = JSON.parse(localStorage.getItem('brewCart')) || [];
         let discountPercent = 0;
-        let selectedMethod = 'visa';
+        let selectedMethod = 'mada';
+
+        const paymentLabels = {
+            mada: 'مدى',
+            visa: 'فيزا / ماستركارد',
+            stcpay: 'stc pay',
+            applepay: 'Apple Pay',
+            paypal: 'PayPal',
+            cod: 'الدفع عند الاستلام'
+        };
+
+        const submitLabels = {
+            mada: 'ادفع الآن',
+            visa: 'ادفع الآن',
+            stcpay: 'متابعة إلى stc pay',
+            applepay: 'متابعة إلى Apple Pay',
+            paypal: 'متابعة إلى PayPal',
+            cod: 'تأكيد الطلب'
+        };
+
+        function formatCurrency(value) {
+            return Number(value).toFixed(2).replace(/\.00$/, '');
+        }
+
+        function calculateTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const shipping = subtotal === 0 ? 0 : subtotal > 200 ? 0 : 15;
+            const discountValue = subtotal * discountPercent / 100;
+            const taxableBase = Math.max(subtotal - discountValue + shipping, 0);
+            const vat = taxableBase * 0.15;
+            const total = taxableBase + vat;
+            return { subtotal, shipping, discountValue, vat, total };
+        }
 
         function displaySummary() {
             const container = $('#summaryItems');
             if (!container) return;
 
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
             container.innerHTML = '';
 
             cart.forEach((item) => {
-                container.innerHTML += `<div style="display: flex; justify-content: space-between; margin: 8px 0;">${item.name} x${item.qty} <span>${item.price * item.qty} ريال</span></div>`;
+                const row = document.createElement('div');
+                row.className = 'summary-item';
+                row.innerHTML = `
+                    <div class="summary-item-info">
+                        <strong>${item.name}</strong>
+                        <small>الكمية: ${item.qty}</small>
+                    </div>
+                    <div class="summary-item-price">${formatCurrency(item.price * item.qty)} ريال</div>
+                `;
+                container.appendChild(row);
             });
 
-            const shipping = subtotal > 200 ? 0 : 15;
-            const discountValue = subtotal * discountPercent / 100;
-            const total = subtotal - discountValue + shipping;
-
-            $('#subtotal').innerText = subtotal;
-            $('#discountAmount').innerText = discountValue;
-            $('#shipping').innerText = shipping;
-            $('#total').innerText = total;
+            const totals = calculateTotals();
+            $('#subtotal').innerText = formatCurrency(totals.subtotal);
+            $('#discountAmount').innerText = formatCurrency(totals.discountValue);
+            $('#shipping').innerText = formatCurrency(totals.shipping);
+            $('#vatAmount').innerText = formatCurrency(totals.vat);
+            $('#total').innerText = formatCurrency(totals.total);
         }
 
         function applyCoupon() {
-            const code = ($('#couponCode')?.value || '').trim();
+            const code = ($('#couponCode')?.value || '').trim().toUpperCase();
             const couponMsg = $('#couponMsg');
             if (!couponMsg) return;
 
             if (code === 'BREW10') {
                 discountPercent = 10;
-                couponMsg.innerHTML = '✅ تم تطبيق خصم 10%';
+                couponMsg.innerHTML = '✅ تم تطبيق خصم 10% على الطلب';
             } else if (code === 'COFFEE20') {
                 discountPercent = 20;
-                couponMsg.innerHTML = '✅ تم تطبيق خصم 20%';
+                couponMsg.innerHTML = '✅ تم تطبيق خصم 20% على الطلب';
             } else if (code === 'WELCOME15') {
                 discountPercent = 15;
-                couponMsg.innerHTML = '✅ تم تطبيق خصم 15%';
+                couponMsg.innerHTML = '✅ تم تطبيق خصم 15% على الطلب';
+            } else if (!code) {
+                discountPercent = 0;
+                couponMsg.innerHTML = 'ℹ️ أدخل كود الخصم ثم اضغط تطبيق';
             } else {
                 discountPercent = 0;
-                couponMsg.innerHTML = '❌ كود غير صالح';
+                couponMsg.innerHTML = '❌ كود الخصم غير صالح';
             }
 
             displaySummary();
         }
 
+        function renderPaymentPanel() {
+            const panel = $('#paymentPanel');
+            const currentMethod = $('#paymentCurrentMethod');
+            const submitBtn = $('#checkoutSubmitBtn');
+            if (!panel) return;
+
+            if (currentMethod) currentMethod.innerText = paymentLabels[selectedMethod] || 'طريقة الدفع';
+            if (submitBtn) submitBtn.innerText = submitLabels[selectedMethod] || 'ادفع الآن';
+
+            if (selectedMethod === 'visa' || selectedMethod === 'mada') {
+                panel.innerHTML = `
+                    <div class="section-heading">
+                        <h3>بيانات البطاقة</h3>
+                        <p>أدخل بيانات البطاقة لإتمام عملية الدفع بأمان.</p>
+                    </div>
+                    <div class="payment-panel-grid">
+                        <div class="field-group field-span-full">
+                            <label for="cardHolder">اسم صاحب البطاقة</label>
+                            <input type="text" id="cardHolder" placeholder="أدخل الاسم كما هو على البطاقة">
+                        </div>
+                        <div class="field-group field-span-full">
+                            <label for="cardNumber">رقم البطاقة</label>
+                            <input type="text" id="cardNumber" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000">
+                        </div>
+                        <div class="field-group">
+                            <label for="expiryDate">شهر / سنة</label>
+                            <input type="text" id="expiryDate" inputmode="numeric" maxlength="5" placeholder="MM/YY">
+                        </div>
+                        <div class="field-group">
+                            <label for="cvv">CVV</label>
+                            <input type="password" id="cvv" inputmode="numeric" maxlength="4" placeholder="123">
+                        </div>
+                    </div>
+                `;
+
+                const cardNumber = $('#cardNumber');
+                const expiryDate = $('#expiryDate');
+                const cvv = $('#cvv');
+
+                cardNumber?.addEventListener('input', (event) => {
+                    const digits = event.target.value.replace(/\D/g, '').slice(0, 16);
+                    event.target.value = digits.replace(/(.{4})/g, '$1 ').trim();
+                });
+
+                expiryDate?.addEventListener('input', (event) => {
+                    const digits = event.target.value.replace(/\D/g, '').slice(0, 4);
+                    event.target.value = digits.length > 2 ? `${digits.slice(0, 2)}/${digits.slice(2)}` : digits;
+                });
+
+                cvv?.addEventListener('input', (event) => {
+                    event.target.value = event.target.value.replace(/\D/g, '').slice(0, 4);
+                });
+                return;
+            }
+
+            if (selectedMethod === 'applepay') {
+                panel.innerHTML = `
+                    <div class="payment-note">
+                         سيتم تحويلك إلى نافذة <strong>Apple Pay</strong> لإتمام الدفع بشكل سريع وآمن على الأجهزة المدعومة بعد تأكيد الطلب.
+                    </div>
+                `;
+                return;
+            }
+
+            if (selectedMethod === 'paypal') {
+                panel.innerHTML = `
+                    <div class="payment-note">
+                        سيتم تحويلك إلى <strong>PayPal</strong> لتسجيل الدخول وإتمام العملية، ثم العودة تلقائياً لتأكيد الطلب.
+                    </div>
+                `;
+                return;
+            }
+
+            if (selectedMethod === 'stcpay') {
+                panel.innerHTML = `
+                    <div class="payment-note">
+                        بعد الضغط على متابعة، سيتم تجهيز طلبك وتحويلك إلى <strong>stc pay</strong> لإتمام عملية الدفع من محفظتك الرقمية.
+                    </div>
+                `;
+                return;
+            }
+
+            panel.innerHTML = `
+                <div class="payment-note">
+                    الدفع عند الاستلام متاح داخل السعودية. قد يتم التواصل معك لتأكيد الطلب قبل الشحن، وقد تُطبق رسوم خدمة رمزية حسب المنطقة.
+                </div>
+            `;
+        }
+
+        function validatePaymentDetails() {
+            if (selectedMethod !== 'visa' && selectedMethod !== 'mada') return true;
+
+            const holder = ($('#cardHolder')?.value || '').trim();
+            const number = ($('#cardNumber')?.value || '').replace(/\s/g, '');
+            const expiry = ($('#expiryDate')?.value || '').trim();
+            const cvv = ($('#cvv')?.value || '').trim();
+
+            if (!holder || number.length < 16 || !/^\d{2}\/\d{2}$/.test(expiry) || cvv.length < 3) {
+                alert('❌ الرجاء إدخال بيانات البطاقة بشكل صحيح');
+                return false;
+            }
+
+            return true;
+        }
+
         function completeOrder() {
-            const name = $('#fullName')?.value || '';
-            const email = $('#email')?.value || '';
-            const phone = $('#phone')?.value || '';
-            const address = $('#address')?.value || '';
+            const name = ($('#fullName')?.value || '').trim();
+            const email = ($('#email')?.value || '').trim();
+            const phone = ($('#phone')?.value || '').trim();
+            const address = ($('#address')?.value || '').trim();
 
             if (!name || !email || !phone || !address) {
-                alert("❌ الرجاء إدخال جميع البيانات المطلوبة");
+                alert('❌ الرجاء إدخال جميع البيانات المطلوبة');
                 return;
             }
 
             if (cart.length === 0) {
-                alert("السلة فارغة!");
+                alert('السلة فارغة!');
                 return;
             }
 
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            const shipping = subtotal > 200 ? 0 : 15;
-            const discountValue = subtotal * discountPercent / 100;
-            const total = subtotal - discountValue + shipping;
+            if (!validatePaymentDetails()) return;
+
+            const totals = calculateTotals();
             const notes = $('#notes')?.value || '';
 
             const order = {
                 orderNumber: 'BRW' + Math.floor(Math.random() * 1000000),
-                name, email, phone, address, notes,
+                name,
+                email,
+                phone,
+                address,
+                notes,
                 items: cart,
-                subtotal, discount: discountValue, shipping, total,
+                subtotal: totals.subtotal,
+                discount: totals.discountValue,
+                shipping: totals.shipping,
+                vat: totals.vat,
+                total: totals.total,
                 paymentMethod: selectedMethod,
-                date: new Date().toLocaleString()
+                paymentMethodLabel: paymentLabels[selectedMethod],
+                date: new Date().toLocaleString('ar-SA')
             };
 
             localStorage.setItem('lastOrder', JSON.stringify(order));
@@ -457,30 +614,37 @@ const processedProducts = products.map((product) => ({
                     🎉 <strong>تم استلام طلبك بنجاح!</strong><br><br>
                     📌 رقم الطلب: ${order.orderNumber}<br>
                     👤 الاسم: ${name}<br>
-                    💰 الإجمالي: ${total} ريال<br>
-                    💳 طريقة الدفع: ${selectedMethod}<br>
+                    💰 الإجمالي: ${formatCurrency(totals.total)} ريال<br>
+                    💳 طريقة الدفع: ${paymentLabels[selectedMethod]}<br>
                     📧 تم إرسال التأكيد إلى: ${email}<br><br>
                     ⏳ سيتم التواصل معك خلال 24 ساعة لتأكيد الطلب.
                 `;
                 successMsg.style.display = 'block';
+                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
 
             localStorage.removeItem('brewCart');
             cart = [];
+            displaySummary();
 
             setTimeout(() => {
                 window.location.href = '/';
             }, 5000);
         }
 
-        $all('.payment-card').forEach((card, index) => {
-            card.addEventListener('click', () => {
-                $all('.payment-card').forEach((item) => item.classList.remove('selected'));
-                card.classList.add('selected');
-                selectedMethod = card.getAttribute('data-method') || 'visa';
+        function selectMethod(card) {
+            $all('.payment-card-real').forEach((item) => {
+                item.classList.remove('selected');
+                item.setAttribute('aria-pressed', 'false');
             });
+            card.classList.add('selected');
+            card.setAttribute('aria-pressed', 'true');
+            selectedMethod = card.dataset.method || 'mada';
+            renderPaymentPanel();
+        }
 
-            if (index === 0) card.classList.add('selected');
+        $all('.payment-card-real').forEach((card) => {
+            card.addEventListener('click', () => selectMethod(card));
         });
 
         document.addEventListener('click', (event) => {
@@ -499,6 +663,9 @@ const processedProducts = products.map((product) => ({
         } else {
             displaySummary();
         }
+
+        const defaultCard = $('.payment-card-real[data-method="mada"]') || $('.payment-card-real');
+        if (defaultCard) selectMethod(defaultCard);
     }
 
     applySavedDarkMode();
