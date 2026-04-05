@@ -38,19 +38,7 @@
             <div class="countdown hero-countdown" id="countdown">⏳ عرض خاص ينتهي بعد: --:--:--</div>
         </div>
 
-        <div class="hero-panel">
-            <div class="hero-stat-card">
-                <strong>شحن سريع</strong>
-                <span>داخل السعودية خلال 3 - 5 أيام</span>
-            </div>
-            <div class="hero-stat-card">
-                <strong>منتجات مختارة</strong>
-                <span>تصميم عملي للاستخدام المنزلي اليومي</span>
-            </div>
-            <div class="hero-stat-card">
-                <strong>دفع آمن</strong>
-                <span>خيارات دفع متعددة وتجربة شراء واضحة</span>
-            </div>
+
         </div>
     </div>
 </section>
@@ -61,49 +49,47 @@
     <div class="trust-chip">↩️ استرجاع خلال 14 يوم</div>
 </section>
 
-<section class="catalog-toolbar" id="catalog">
-    <div class="toolbar-head">
-        <div>
-            <span class="section-kicker">التسوق</span>
-            <h2>اكتشف منتجات BrewCraft</h2>
-        </div>
-    </div>
 
-    <div class="search-filter home-toolbar">
-        <div class="search-box home-search-box">
-            <label class="visually-hidden" for="searchInput">ابحث عن منتج</label>
-            <input type="text" id="searchInput" placeholder="ابحث عن منتج، كوب، مطحنة أو أداة تحضير">
+<section class="home-category-toolbar" aria-label="شريط التصفية">
+    <div class="category-toolbar-inner">
+        <div class="category-toolbar-search">
+            <input type="search" placeholder="ادخل كلمة البحث">
         </div>
-
-        <div class="filters home-filters">
-            <select id="categoryFilter">
-                <option value="all">جميع الفئات</option>
-                <option value="أدوات تحضير">أدوات تحضير</option>
-                <option value="طحن">طحن</option>
-                <option value="أكواب">أكواب</option>
-                <option value="إكسسوارات">إكسسوارات</option>
-                <option value="مستهلكات">مستهلكات</option>
+        <div class="category-toolbar-controls">
+            <span class="category-toolbar-label">ترتيب</span>
+            <select aria-label="ترتيب المنتجات">
+                <option>مقترحاتنا</option>
+                <option>الأكثر مبيعاً</option>
+                <option>الأعلى تقييماً</option>
+                <option>السعر من الأعلى إلى الأقل</option>
+                <option>السعر من الأقل إلى الأعلى</option>
             </select>
-            <select id="sortFilter">
-                <option value="default">ترتيب افتراضي</option>
-                <option value="priceAsc">السعر: من الأقل للأعلى</option>
-                <option value="priceDesc">السعر: من الأعلى للأقل</option>
+            <select aria-label="تصنيف المنتجات">
+                <option>جميع الفئات</option>
+                <option>أدوات تحضير</option>
+                <option>طحن</option>
+                <option>أكواب</option>
+                <option>إكسسوارات</option>
+                <option>مستهلكات</option>
             </select>
-            <button type="button" data-action="show-best-sellers">الأكثر مبيعاً</button>
-            <button type="button" data-action="show-all-products">عرض الكل</button>
+            <button type="button" class="category-toolbar-btn">الأكثر مبيعاً</button>
+            <button type="button" class="category-toolbar-btn">عرض الكل</button>
         </div>
     </div>
 </section>
 
-<section class="products home-products">
+<section class="products home-products" id="catalog">
     <div class="products-header">
         <div>
             <span class="section-kicker">المنتجات</span>
             <h2>تشكيلة جاهزة للتحضير المنزلي</h2>
         </div>
+        <p>منتجات مختارة بصور محلية من داخل المشروع، مع عرض أبسط وأوضح.</p>
     </div>
     <div class="product-grid" id="product-grid"></div>
 </section>
+
+
 
 <div id="productModal" class="modal">
     <div class="modal-content">
