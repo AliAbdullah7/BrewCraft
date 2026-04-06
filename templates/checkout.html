@@ -95,42 +95,38 @@
                     <div class="payment-current-method" id="paymentCurrentMethod">مدى</div>
                 </div>
 
-                <div class="payment-methods payment-methods-real payment-methods-compact" id="paymentMethods">
+                <<div class="payment-methods payment-methods-real payment-methods-compact" id="paymentMethods">
+
                     <button type="button" class="payment-card payment-card-real payment-card-compact" data-method="mada" aria-pressed="true">
                         <span class="payment-radio"></span>
                         <span class="payment-meta">
                             <strong>مدى</strong>
                             <small>بطاقات محلية سعودية</small>
                         </span>
-                        <span class="payment-brand logo-mada">
-                            <span class="brand-lines">
-                                <span class="line blue"></span>
-                                <span class="line green"></span>
-                            </span>
-                            <span class="brand-copy"><strong>مدى</strong><small>mada</small></span>
+                        <span class="payment-brand">
+                            <img src="{{ url_for('static', filename='images/mada.png') }}" alt="mada" class="payment-logo">
                         </span>
                     </button>
 
                     <button type="button" class="payment-card payment-card-real payment-card-compact" data-method="visa">
                         <span class="payment-radio"></span>
                         <span class="payment-meta">
-                            <strong>فيزا / ماستركارد</strong>
+                            <strong>فيزا</strong>
                             <small>دفع آمن بالبطاقة</small>
                         </span>
-                        <span class="payment-brand logo-visa-master">
-                            <span class="mc-dots"><span></span><span></span></span>
-                            <span class="brand-copy visa-text">VISA</span>
+                        <span class="payment-brand">
+                            <img src="{{ url_for('static', filename='images/visa.jpg') }}" alt="Visa" class="payment-logo">
                         </span>
                     </button>
 
-                    <button type="button" class="payment-card payment-card-real payment-card-compact" data-method="stcpay">
+                    <button type="button" class="payment-card payment-card-real payment-card-compact" data-method="stcbank">
                         <span class="payment-radio"></span>
                         <span class="payment-meta">
-                            <strong>stc pay</strong>
+                            <strong>stc Bank</strong>
                             <small>محفظة رقمية سريعة</small>
                         </span>
-                        <span class="payment-brand logo-stcpay">
-                            <strong>stc</strong><span>pay</span>
+                        <span class="payment-brand">
+                            <img src="{{ url_for('static', filename='images/stcBank.png') }}" alt="stc Bank" class="payment-logo">
                         </span>
                     </button>
 
@@ -140,10 +136,8 @@
                             <strong>Apple Pay</strong>
                             <small>الأسرع على أجهزة Apple</small>
                         </span>
-                        <span class="payment-brand logo-applepay">
-                            <span class="apple-word">Apple</span>
-                            <span class="pay-word">Pay</span>
-                            <span class="apple-symbol"></span>
+                        <span class="payment-brand">
+                            <img src="{{ url_for('static', filename='images/applepay.png') }}" alt="Apple Pay" class="payment-logo">
                         </span>
                     </button>
 
@@ -153,10 +147,12 @@
                             <strong>PayPal</strong>
                             <small>الدفع عبر الحساب</small>
                         </span>
-                        <span class="payment-brand logo-paypal">
-                            <strong>Pay</strong><span>Pal</span>
+                        <span class="payment-brand">
+                            <img src="{{ url_for('static', filename='images/paypal.png') }}" alt="PayPal" class="payment-logo">
                         </span>
                     </button>
+
+
 
                     <button type="button" class="payment-card payment-card-real payment-card-compact" data-method="cod">
                         <span class="payment-radio"></span>

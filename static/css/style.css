@@ -2380,7 +2380,21 @@ body.dark.home-page .home-footer a {
         grid-template-columns: 1fr;
     }
 }
+.payment-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
+}
 
+.payment-logo {
+    max-width: 70px;
+    max-height: 36px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
 @media (max-width: 700px) {
     .compact-card,
     .summary-card-compact {
@@ -2433,4 +2447,5 @@ body.dark.home-page .home-footer a {
     .compact-discount-box button {
         width: 100%;
     }
+
 }
