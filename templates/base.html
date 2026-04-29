@@ -4,9 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}BrewCraft{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/brewcraft-logo-transparent.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="{% block body_class %}{% endblock %}" data-page="{% block page_name %}{% endblock %}">
+
+    {% macro site_header(active_page='') %}
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand-pill" href="{{ url_for('index') }}" aria-label="BrewCraft homepage">
+                <span class="brand-pill__logo">
+                    <img class="site-logo-img" src="{{ url_for('static', filename='images/brewcraft-logo-transparent.png') }}" alt="BrewCraft Logo">
+                </span>
+                <span class="brand-pill__text">
+                    <span class="brand-pill__title">BrewCraft</span>
+                    <span class="brand-pill__subtitle">أدوات قهوة منزلية مختارة بعناية</span>
+                </span>
+            </a>
+
+            <nav class="site-nav" aria-label="التنقل الرئيسي">
+                <a class="{{ 'active' if active_page == 'index' else '' }}" href="{{ url_for('index') }}">الرئيسية</a>
+                <a class="{{ 'active' if active_page == 'blog' else '' }}" href="{{ url_for('blog') }}">مدونة القهوة</a>
+                <a class="{{ 'active' if active_page == 'about' else '' }}" href="{{ url_for('about') }}">من نحن</a>
+                <a class="{{ 'active' if active_page == 'contact' else '' }}" href="{{ url_for('contact') }}">اتصل بنا</a>
+                <a class="{{ 'active' if active_page == 'policy' else '' }}" href="{{ url_for('policy') }}">السياسة</a>
+            </nav>
+
+            <div class="header-actions header-actions--premium">
+                <button class="dark-toggle premium-icon-btn" type="button" data-action="toggle-dark" aria-label="تبديل الوضع الليلي">🌙</button>
+                {% if active_page != 'checkout' %}
+                <button class="cart-icon premium-cart-btn" type="button" data-action="toggle-cart" aria-label="فتح السلة">
+                    السلة
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    {% endmacro %}
+
+
     {% block content %}{% endblock %}
     <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
 </body>

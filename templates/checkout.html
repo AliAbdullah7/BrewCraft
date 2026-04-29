@@ -3,6 +3,7 @@
 {% block body_class %}checkout-page{% endblock %}
 {% block page_name %}checkout{% endblock %}
 {% block content %}
+{{ site_header('checkout') }}
 <div class="checkout-shell checkout-shell-compact">
     <div class="checkout-topbar">
         <div>
@@ -95,7 +96,7 @@
                     <div class="payment-current-method" id="paymentCurrentMethod">مدى</div>
                 </div>
 
-                <<div class="payment-methods payment-methods-real payment-methods-compact" id="paymentMethods">
+                <div class="payment-methods payment-methods-real payment-methods-compact" id="paymentMethods">
 
                     <button type="button" class="payment-card payment-card-real payment-card-compact" data-method="mada" aria-pressed="true">
                         <span class="payment-radio"></span>

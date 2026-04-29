@@ -504,8 +504,22 @@
         }
     }
 
+
+    function initEscapeToClosePanels() {
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'Escape') return;
+            const cart = document.getElementById('cart-sidebar');
+            const account = document.getElementById('account-sidebar');
+            const modal = document.getElementById('productModal');
+            if (cart) cart.classList.remove('open');
+            if (account) account.classList.remove('open');
+            if (modal) modal.style.display = 'none';
+        });
+    }
+
     applySavedDarkMode();
     initGlobalActions();
+    initEscapeToClosePanels();
     initIndexPage();
     initCheckoutPage();
 })();

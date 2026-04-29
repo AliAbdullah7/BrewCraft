@@ -2449,3 +2449,173 @@ body.dark.home-page .home-footer a {
     }
 
 }
+
+
+
+/* ===== BrewCraft logo + header refinement ===== */
+.site-header {
+    background: linear-gradient(180deg, #285132 0%, #24492e 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 14px 22px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
+.site-header__inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 22px;
+}
+
+.site-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.site-nav a {
+    color: var(--header-text);
+    font-weight: 800;
+    padding: 10px 16px;
+    border-radius: 999px;
+    transition: 0.2s ease;
+}
+
+.site-nav a.active,
+.site-nav a:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 16px;
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,243,234,0.96));
+    border: 1px solid rgba(108, 80, 53, 0.14);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+    text-decoration: none;
+}
+
+.brand-pill__logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.site-logo-img {
+    width: 220px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.10));
+}
+
+.brand-pill__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    line-height: 1.2;
+    color: #5b3a25;
+}
+
+.brand-pill__title {
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.brand-pill__subtitle {
+    font-size: 12px;
+    color: #7b624d;
+    white-space: nowrap;
+}
+
+.header-actions--premium {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.premium-icon-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.premium-cart-btn {
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-weight: 800;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+}
+
+.footer-brand-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,243,234,0.96));
+    border: 1px solid rgba(108, 80, 53, 0.14);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    margin-bottom: 16px;
+}
+
+.footer-logo-img {
+    width: 210px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+@media (max-width: 1080px) {
+    .site-header__inner {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .brand-pill {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px 14px;
+    }
+
+    .brand-pill__text {
+        align-items: center;
+    }
+
+    .brand-pill__subtitle {
+        white-space: normal;
+    }
+}
+
+@media (max-width: 760px) {
+    .site-header {
+        padding: 12px;
+    }
+
+    .site-logo-img,
+    .footer-logo-img {
+        width: 170px;
+    }
+
+    .site-nav a {
+        padding: 8px 12px;
+        font-size: 15px;
+    }
+}
